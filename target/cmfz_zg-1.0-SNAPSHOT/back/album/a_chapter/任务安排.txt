@@ -1,0 +1,46 @@
+1.小组的库表分析讲解
+2.持明法洲的库表讲解
+
+  管理员表(admin)
+    id  name(手机号、邮箱、身份证号..)、password 
+ 
+  菜单表(menu)
+    id  title iconCls href（url） parent_id
+
+  轮播图表(banner)
+    id  title imgPath  desc  status  date(创建时间)
+
+ 上师表(guru)1
+    id name headPic gender(sex/hot)
+  文章表(article) N
+    id title imgPath content publishDate(发布日期)
+  
+  专辑表(album)1
+    id title publishDate(发布日期) count coverImg(封面)
+    star(score) author broadCast  brief(简介)
+  章节表(chapter)N
+    id title size duration(时长) downPath uploadTime(Date)
+
+  用户表(user)1
+    id  phoneNum username  password  salt(盐)  address nickName(法名)  
+	gender sign headPic  status  date 
+  计数器表(counter)N
+    id title count recordDate user_id course_id
+  功课表(course)1
+    id title marking(flag) creatTime(创建时间)
+  
+
+3.接口初步分析 （开发环境上讲解--面试点  SpringMVC的执行流程）
+
+4 开发规范
+
+   1）项目名称  cmfz_xxx (cmfz_zs)
+   2) 包名:  com.baizhi.dao/service/entity/controller/sql/test/util/mapper
+             dao (insertXXX/updateXXX/deleteXXX/queryXXX)
+	     service(addXXX/motifyXXX/removeXXX/findXXX)
+     类名:不能是汉语拼音、汉字；首字母必须大写。
+
+布置任务:
+	登陆、菜单列表、轮播图模块
+
+

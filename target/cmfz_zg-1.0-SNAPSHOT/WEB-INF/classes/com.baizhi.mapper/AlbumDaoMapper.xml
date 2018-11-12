@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.AlbumDao">
+    <resultMap id="cp" type="Album">
+        <id column="id" property="id"/>
+        <id column="title" property="title"/>
+        <id column="publishDate" property="publishDate"/>
+        <id column="count" property="count"/>
+        <id column="coverImg" property="coverImg"/>
+        <id column="star" property="star"/>
+        <id column="author" property="author"/>
+        <id column="broadCast" property="broadCast"/>
+        <id column="brief" property="brief"/>
+        <collection property="children" ofType="Chapter">
+            <id column="c_id" property="id"/>
+            <id column="c_title" property="title"/>
+            <id column="size" property="size"/>
+            <id column="duration" property="duration"/>
+            <id column="downPath" property="downPath"/>
+            <id column="uploadTime" property="uploadTime"/>
+            <id column="album_id" property="album_id"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryAll" resultMap="cp">
+       SELECT a.id,a.title,a.publishDate,a.count,a.coverImg,a.star,a.author,
+			a.broadCast,a.brief,c.id c_id,c.title c_title,c.size,c.duration,
+			c.downPath,c.uploadTime,c.album_id
+      FROM album  a
+     left JOIN chapter  c
+      ON a.id = c.album_id
+    </select>
+
+    <select id="queryOne" resultType="Album">
+        select id,title,publishDate,count,coverImg,star,author,broadCast,brief
+        from album where id = #{id}
+    </select>
+
+    <insert id="insertAlbum" parameterType="Album">
+        insert into album values(#{id},#{title},#{publishDate},#{count},#{coverImg},#{star},#{author},#{broadCast},#{brief})
+    </insert>
+
+    <!--<delete id="deleteById" parameterType="java.lang.String">-->
+      <!--delete from banner-->
+      <!--where id = #{id}-->
+    <!--</delete>-->
+    <!--<update id="update" parameterType="Banner">-->
+        <!--update banner-->
+        <!--set title = #{title},imgPath = #{imgPath},status = #{status},date = #{date}-->
+        <!--where id = #{id}-->
+    <!--</update>-->
+</mapper>
